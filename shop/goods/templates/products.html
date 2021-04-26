@@ -3,6 +3,22 @@
 {% block title %}Products list{% endblock %}
 {% block content %}
     <h1>Posts list</h1>
+
+<form action="{% url 'all_products' %}" method="get">
+    <select name="category" id="category">
+
+        {% for category in categories %}
+        <option value="{{ category.pk }}">
+            {{ category.name }}
+        </option>
+        {% endfor %}
+    </select>
+    <input type="submit"
+           value="Search" class="btn btn-success" />
+    {{ selected_category }}
+    {%if selected_category == "0e4ec5e6-6a25-4d96-80b7-5d293fd06bca" %}Eto Books{%else%}Eto test{% endif %}
+
+</form>
     {% for product in products %}
 
     <div>

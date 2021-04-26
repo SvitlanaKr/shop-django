@@ -1,9 +1,10 @@
 from typing import Iterable
 
+from django.db.models.manager import BaseManager
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404
 
-from .models import Product, Comment
+from .models import Product, Comment, Category
 from .forms import CommentForm
 
 
@@ -11,6 +12,10 @@ def get_all_products(category) -> Iterable[Product]:
     if category:
         return Product.objects.filter(category_id=category)
     return Product.objects.all()
+
+
+def get_all_categories() -> BaseManager:
+    return Category.objects.all()
 
 
 def get_product_by_id(pk: int) -> Product:

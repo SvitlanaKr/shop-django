@@ -4,17 +4,21 @@ from django.shortcuts import render
 from .services import (
     get_all_products,
     get_product_by_id,
-    get_form_and_create_comment,
     get_product_comments,
+    get_all_categories,
+    get_form_and_create_comment
 )
 
 
 def product_list(request: HttpRequest) -> HttpResponse:
+    category = request.GET.get('category')
     return render(
         request,
         "products.html",
         {
-            "products": get_all_products(request.GET.get('category')),
+            "products": get_all_products(category),
+            "categories": get_all_categories(),
+            "selected_category": category
         }
     )
 
