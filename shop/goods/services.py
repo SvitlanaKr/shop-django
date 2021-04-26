@@ -8,9 +8,8 @@ from .forms import CommentForm
 
 
 def get_all_products(category) -> Iterable[Product]:
-    print('hhh')
     if category:
-        return Product.objects.filter(name=category)
+        return Product.objects.filter(category_id=category)
     return Product.objects.all()
 
 
