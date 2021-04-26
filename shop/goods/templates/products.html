@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Products list{% endblock %}
+{% block content %}
+    <h1>Posts list</h1>
+    {% for product in products %}
+
+    <div>
+            <h3>{{ product.name }}</h3>
+            <p>
+                {{ product.description|truncatewords:20 }}
+                <img src="{{product.image.url}}">
+                <a href="{% url 'product_details' product.pk %}">Read more</a>
+            </p>
+    </div>
+
+    {% empty %}
+
+        <p>No goods available...</p>
+
+    {% endfor %}
+{% endblock %}

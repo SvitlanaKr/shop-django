@@ -2,9 +2,15 @@ from typing import List
 
 from django.urls import path
 from django.urls.resolvers import RoutePattern
+from django.contrib.staticfiles.urls import static
+from django.conf import settings
 
-from goods.views import goods
+from .views import product_list, single_product
 
 urlpatterns: List[RoutePattern] = [
-    path("goods", goods, name="Goods"),
+    path("list/", product_list, name="all_products"),
+    path("<int:pk>/", single_product, name="product_details"),
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

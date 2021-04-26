@@ -6,19 +6,19 @@ from django.shortcuts import redirect, render
 
 def logout_user(request: HttpRequest) -> HttpResponse:
     logout(request)
-    return redirect("Goods")  # TODO modify redirect url
+    return redirect("all_products")
 
 
 def login_user(request: HttpRequest) -> HttpResponse:
     auth_form = AuthenticationForm(request, request.POST)
 
     if request.user.is_authenticated:
-        return redirect("Goods")  # TODO modify redirect url
+        return redirect("all_products")
     if request.method == "POST":
         if auth_form.is_valid():
             user = auth_form.get_user()
             login(request, user)
-            return redirect("Goods")  # TODO modify redirect url
+            return redirect("all_products")
 
     return render(
         request,

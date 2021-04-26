@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog | {% block title %}No title{% endblock %}</title>
+</head>
+<body>
+
+<pre>
+System information:
+-------------------
+Current user: {{ request.user }}
+Is authenticated: {{ request.user.is_authenticated }}
+</pre>
+
+<div>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+</div>
+
+<hr>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>
