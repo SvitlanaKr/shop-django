@@ -6,17 +6,18 @@
 
 <form action="{% url 'all_products' %}" method="get">
     <select name="category" id="category">
-
+        <option  value="" selected="selected">Choose category</option>
         {% for category in categories %}
         <option value="{{ category.pk }}">
-            {{ category.name }}
+            {%if category|stringformat:"s" == selected_category %}selected="selected"{% endif %}
+            {{category.name|capfirst}}
         </option>
         {% endfor %}
     </select>
     <input type="submit"
            value="Search" class="btn btn-success" />
-    {{ selected_category }}
-    {%if selected_category == "0e4ec5e6-6a25-4d96-80b7-5d293fd06bca" %}Eto Books{%else%}Eto test{% endif %}
+<!--    {{ selected_category }}-->
+<!--    {%if selected_category == "ba11c88c-4ffa-471c-a443-1fb079ce01b0" %}Eto Toy{%else%}Eto book{% endif %}-->
 
 </form>
     {% for product in products %}

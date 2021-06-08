@@ -10,7 +10,4 @@ from .views import product_list, single_product
 urlpatterns: List[RoutePattern] = [
     path("list/", product_list, name="all_products"),
     path("<int:pk>/", single_product, name="product_details"),
-]
-
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
